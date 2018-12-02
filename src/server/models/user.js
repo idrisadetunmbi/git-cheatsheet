@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
     maxlength: 15,
     validate: {
       validator: value => isAlphanumeric(value),
-      msg: () => 'username can only alphanumeric characters',
+      msg: () => 'username can only contain alphanumeric characters',
     },
   },
 
@@ -23,6 +23,8 @@ const schema = new mongoose.Schema({
     required: true,
     minlength: 6,
   },
+
+  cheats: [{ type: mongoose.Schema.Types.ObjectId, ref: 'cheat' }],
 });
 
 schema.post('validate', function (doc, next) { // eslint-disable-line
