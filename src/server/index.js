@@ -3,6 +3,7 @@ import express from 'express';
 import http from 'http';
 import logger from 'morgan';
 import mongoose from 'mongoose';
+import path from 'path';
 
 import config from './config';
 import api from './routes';
@@ -15,13 +16,15 @@ app.use(logger('combined'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
-  res.status(200).send({
-    message: 'Git Cheatsheet',
-  });
-});
-
 app.use('/api', api);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'client')));
+  app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'client', 'index.html')));
+} else {
+  // eslint-disable-next-line
+  require('../../webpack-configs/express-middleware')(app);
+}
 
 const port = Number(config.PORT) || 3000;
 http.createServer(app).listen(port, () => {
