@@ -1,0 +1,31 @@
+.category-title {
+    display: block;
+    padding: .3rem;
+    color: white;
+    background-color: black;
+    border: 1px solid black;
+    text-transform: capitalize;
+}
+
+.category {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    width: 31.5%;
+}
+
+.category-cheat {
+    padding: .5rem;
+    border: 1px solid black;
+    border-top: none;
+}
+
+.cheat-copied {
+    font-size: 10.5px;
+    float: right;
+}
+
+.cheat-command {
+  display: block;
+  font-family: monospace;
+  font-size: 12px
+}
