@@ -1,15 +1,12 @@
 const presets = [[
-  "@babel/env",
+  '@babel/env',
   {
     targets: {
-      node: true
-    }
-  }
-]
-// , [
-//   "@babel/preset-react"
-// ]
-]
-const plugins = [["@babel/plugin-proposal-class-properties"]]
+      node: true,
+    },
+  },
+], ['@babel/preset-react'],
+];
+const plugins = [['@babel/plugin-proposal-class-properties']];
 
-module.exports = { presets, plugins }
+module.exports = { presets, plugins };
