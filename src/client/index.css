@@ -29,3 +29,13 @@
   font-family: monospace;
   font-size: 12px
 }
+
+.sidenav-trigger {
+    margin-top: 5rem;
+}
+
+.logo {
+    width: 5rem;
+    display: block;
+    margin: 2rem auto;
+}

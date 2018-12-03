@@ -8,6 +8,7 @@ import { fetchCategories } from '../store/actions/categories';
 
 import Categories from './Categories';
 import Search from './Search';
+import SideNav from './SideNav';
 
 const store = createStore(axios);
 
@@ -16,8 +17,13 @@ store.dispatch(fetchCategories());
 export default hot(module)(() => (
   <Provider store={store}>
     <Fragment>
-      <Search />
-      <Categories />
+      <div className="row">
+        <SideNav />
+        <div className="container">
+          <Search />
+          <Categories />
+        </div>
+      </div>
     </Fragment>
   </Provider>
 ));

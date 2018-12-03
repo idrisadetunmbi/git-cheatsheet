@@ -13,7 +13,7 @@ export default new class {
       const token = jwt.sign(user.id, config.JWT_SECRET);
       return res.status(201).send({
         message: 'Sign-up successful',
-        data: { token },
+        data: { token, ...user.toObject() },
       });
     } catch (error) {
       return res.status(400).send({
@@ -32,6 +32,7 @@ export default new class {
         message: 'Sign-in successful',
         data: {
           token: jwt.sign(user.id, config.JWT_SECRET),
+          ...user.toObject(),
         },
       });
     } catch (error) {
