@@ -2,9 +2,18 @@
   "name": "git-cheatsheet",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/server/index.js",
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.1.0"
+  },
   "scripts": {
+    "start": "node build/server",
     "start:dev": "nodemon --watch src/server --exec babel-node src/server/index.js",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "rm -rf build/server && babel src/server -d build/server --copy-files",
+    "build:client": "webpack --config webpack-configs/webpack.prod.js",
+    "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
