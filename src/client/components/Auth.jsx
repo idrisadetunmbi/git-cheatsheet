@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authAction, signOutUser } from '../store/actions/auth';
 import { clearError } from '../store/actions/error';
 
-const AuthStatus = ({ user, toggleFormVisibility, showMsg, signOut }) => ( // eslint-disable-line
+export const AuthStatus = ({ user, toggleFormVisibility, showMsg, signOut }) => ( // eslint-disable-line
   !user
     ? (
       <p style={{ padding: '0 2rem', display: `${showMsg ? 'block' : 'none'}` }}>
@@ -35,12 +35,7 @@ const AccountStatusMsg = ({ authTypeIsSignIn, toggleAuthType }) => (
       </p>
     )
 );
-
-export default connect(state => ({
-  error: state.error,
-  user: state.user,
-}),
-{ authAction, clearError, signOutUser })(class extends Component {
+export class Auth extends Component {
     state = {
       showForm: false,
       data: {
@@ -148,4 +143,10 @@ export default connect(state => ({
         </div>
       );
     }
-});
+}
+
+export default connect(state => ({
+  error: state.error,
+  user: state.user,
+}),
+{ authAction, clearError, signOutUser })(Auth);

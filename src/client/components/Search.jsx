@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { searchCategory } from '../store/actions/categories';
 
-export default connect(null, { searchCategory })(({ searchCategory: search }) => (
+export const Search = ({ searchCategory: search }) => (
   <div className="row">
     <div className="input-field col offset-s3 s6">
       <i style={{ top: '1rem' }} className="material-icons prefix">search</i>
@@ -18,4 +18,6 @@ export default connect(null, { searchCategory })(({ searchCategory: search }) =>
       </label>
     </div>
   </div>
-));
+);
+
+export default connect(null, { searchCategory })(Search);

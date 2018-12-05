@@ -5,7 +5,6 @@ export const fetchCategories = () => async (dispatch, getState, axios) => {
   try {
     categories = (await axios.get('/api/categories')).data.data;
   } catch (error) {
-    console.log('>>>>>>>>>>>>>', error);
     return null;
   }
   return dispatch({
