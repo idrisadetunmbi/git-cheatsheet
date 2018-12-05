@@ -11,9 +11,11 @@ export default new class {
       const user = new User(req.body);
       await user.save();
       const token = jwt.sign(user.id, config.JWT_SECRET);
+
+      const { password, ...data } = user.toObject();
       return res.status(201).send({
         message: 'Sign-up successful',
-        data: { token, ...user.toObject() },
+        data: { token, ...data },
       });
     } catch (error) {
       return res.status(400).send({
@@ -28,11 +30,12 @@ export default new class {
       if (!user || !bcrypt.compareSync(req.body.password, user.password)) {
         throw new Error('Invalid sign in credentials');
       }
+      const { password, ...data } = user.toObject();
       return res.status(200).send({
         message: 'Sign-in successful',
         data: {
           token: jwt.sign(user.id, config.JWT_SECRET),
-          ...user.toObject(),
+          ...data,
         },
       });
     } catch (error) {

@@ -21,12 +21,14 @@ app.use('/api', api);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '..', 'client')));
   app.get('*', (req, res) => res.sendFile(path.join(__dirname, '..', 'client', 'index.html')));
-} else {
+} else if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
   // eslint-disable-next-line
   require('../../webpack-configs/express-middleware')(app);
 }
 
 const port = Number(config.PORT) || 3000;
-http.createServer(app).listen(port, () => {
+const server = http.createServer(app).listen(port, () => {
   mongoose.connect(config.DATABASE_URL, { useNewUrlParser: true });
 });
+
+export default server;
