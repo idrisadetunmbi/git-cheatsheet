@@ -17,7 +17,8 @@
     "env": {
         "browser": true,
         "node": true,
-        "jest": true
+        "jest": true,
+        "mocha": true
     },
     "globals": {
         "M": true
